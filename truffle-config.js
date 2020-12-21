@@ -1,26 +1,35 @@
 module.exports = {
-  // Uncommenting the defaults below
-  // provides for an easier quick-start with Ganache.
-  // You can also follow this format for other networks;
-  // see <http://truffleframework.com/docs/advanced/configuration>
-  // for more details on how to specify configuration options!
-  //
-  //networks: {
-  //  development: {
-  //    host: "127.0.0.1",
-  //    port: 7545,
-  //    network_id: "*"
-  //  },
-  //  test: {
-  //    host: "127.0.0.1",
-  //    port: 7545,
-  //    network_id: "*"
-  //  }
-  //}
-  //
   compilers: {
     solc: {
-      version: "0.6.12"
+      version: "0.6.12",
+      settings: {
+        optimizer: {
+          enabled: true,
+          runs: 200
+        },
+      }
     }
+  },
+  networks: {
+    develop: {
+      host: "127.0.0.1",
+      port: 8545,
+      network_id: "*",
+      websockets: true,
+      gasPrice: 1000000000,
+      defaultEtherBalance: 9999
+    },
+    // Moonbase Alpha TestNet
+    /*
+    moonbase: {
+      provider: new HDWalletProvider(
+        mnemonic,
+        "https://rpc.testnet.moonbeam.network"
+      ),
+       network_id: 1287,
+       gasPrice: 0,
+       gas: 12000000  // 0.006 -> 0.012   0.1
+    }
+    */
   }
-};
+}
